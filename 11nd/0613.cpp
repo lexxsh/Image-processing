@@ -12,9 +12,9 @@ using namespace std;
 // 이미지와 노출 시간을 읽어오는 함수
 void readImagesAndTimes(vector<Mat>& images, vector<float>& times) {
     int numImages = 4;
-    static const float timesArray[] = { 1 / 30.0f, 0.25f, 2.5f, 15.0f };
+    static const float timesArray[] = { 1 / 500.0f, 1 / 80.0f, 1 / 10.0f, 0.5f };
     times.assign(timesArray, timesArray + numImages);  // 노출 시간 설정
-    static const char* filenames[] = { "11/im.jpg", "11/im1.jpg", "11/im2.jpg", "11/im3.jpg" };
+    static const char* filenames[] = { "11/im1.jpg", "11/im2.jpg", "11/im3.jpg", "11/im4.jpg" };
     for (int i = 0; i < numImages; i++) {
         Mat im = imread(filenames[i]);  // 이미지를 읽어옴
         if (im.empty()) {
@@ -64,7 +64,7 @@ Mat GetHistogram(Mat src) {
     return histImage;
 }
 
-void histogram(Mat img1,const string& title1) {
+void histogram(Mat img1, const string& title1) {
     Mat histImage1 = GetHistogram(img1);
     imshow("Histogram " + title1, histImage1);
 }
@@ -119,11 +119,11 @@ void ex1() {
 
     // 원본 사진과 톤매핑한 결과의 히스토그램 표시
     cout << "Displaying histograms ..." << endl;
-    histogram(images[0] , "original 1");
+    histogram(images[0], "original 1");
     histogram(images[1], "original 2");
     histogram(images[2], "original 3");
     histogram(images[3], "original 4");
-    waitKey(0); 
+    waitKey(0);
     histogram(ldrDrago, "Drago Tonemapped Image");
     histogram(ldrReinhard, "Reinhard Tonemapped Image");
     histogram(ldrMantiuk, "Mantiuk Tonemapped Image");
